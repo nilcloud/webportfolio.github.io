@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nilesh Shah - IT System Administrator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #3b82f6;
+            --dark: #0f172a;
+            --darker: #020617;
+            --card-bg: rgba(15, 23, 42, 0.9);
+            --text-light: #e2e8f0;
+            --text-gray: #94a3b8;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--secondary) 50%, var(--dark) 100%);
+            color: var(--text-light);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-content {
+            animation: fadeIn 1s ease-out;
+            z-index: 1;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
+        }
+
+        .typing-text {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            color: var(--accent);
+            margin-bottom: 2rem;
+            height: 2.5rem;
+        }
+
+        .typing-cursor {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .contact-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            background: var(--primary);
+            border: 2px solid transparent;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+            border-color: var(--accent);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+        }
+
+        /* Game Section */
+        .games-section {
+            padding: 3rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .games-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .game-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 2px solid var(--primary);
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.3);
+            border-color: var(--accent);
+        }
+
+        .game-title {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .game-description {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .play-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .play-btn:hover {
+            background: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* Terminal Game */
+        .terminal-game {
+            background: #000;
+            border-radius: 10px;
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            color: #0f0;
+            min-height: 300px;
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .terminal-game.active {
+            display: block;
+        }
+
+        .terminal-header {
+            color: #0f0;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #0f0;
+            padding-bottom: 0.5rem;
+        }
+
+        .terminal-content {
+            min-height: 200px;
+        }
+
+        .terminal-input {
+            background: transparent;
+            border: none;
+            color: #0f0;
+            font-family: inherit;
+            width: 100%;
+            outline: none;
+            margin-top: 1rem;
+        }
+
+        /* Memory Game */
+        .memory-game {
+            display: none;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .memory-game.active {
+            display: grid;
+        }
+
+        .memory-card {
+            aspect-ratio: 1;
+            background: var(--secondary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid var(--primary);
+        }
+
+        .memory-card:hover {
+            transform: scale(1.05);
+        }
+
+        .memory-card.flipped {
+            background: var(--accent);
+            transform: rotateY(180deg);
+        }
+
+        .memory-card.matched {
+            background: var(--success);
+            animation: matchPulse 0.5s;
+        }
+
+        @keyframes matchPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Speed Test Game */
+        .speed-test {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .speed-test.active {
+            display: block;
+        }
+
+        .speed-display {
+            font-size: 3rem;
+            color: var(--accent);
+            margin: 2rem 0;
+            font-weight: bold;
+        }
+
+        .speed-button {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 0 auto;
+        }
+
+        .speed-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+        }
+
+        .speed-button:active {
+            transform: scale(0.95);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--accent);
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+            border-color: var(--accent);
+        }
+
+        /* Skills Section */
+        #skills {
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category h3 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .skill-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 4px;
+            transition: width 1.5s ease-out;
+        }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--primary);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0;
+            width: 1rem;
+            height: 1rem;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .company-name {
+            color: var(--accent);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .date-badge {
+            background: var(--primary);
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+        }
+
+        .job-title {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+        }
+
+        .experience-list {
+            list-style: none;
+            color: var(--text-light);
+        }
+
+        .experience-list li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-info a {
+            color: var(--text-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--accent);
+        }
+
+        .reference {
+            margin-bottom: 1.5rem;
+        }
+
+        .reference .name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--accent);
+        }
+
+        .reference .company {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(37, 99, 235, 0.3);
+            color: var(--text-gray);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--accent);
+            transition: 0.3s;
+        }
+
+        /* Score Display */
+        .score-display {
+            background: var(--success);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-weight: bold;
+            display: none;
+        }
+
+        .score-display.show {
+            display: inline-block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--card-bg);
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .games-container {
+                grid-template-columns: 1fr;
+            }
+
+            .memory-game {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">NS</div>
+            <div class="nav-links" id="navLinks">
+                <a href="#home" class="active">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#games">Tech Games</a>
+                <a href="#experience">Experience</a>
+                <a href="#education">Education</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="mobile-menu" id="mobileMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <div class="hero-content">
+            <h1>NILESH SAH</h1>
+            <div class="typing-text">
+                <span id="typedText"></span><span class="typing-cursor">|</span>
+            </div>
+            <div class="contact-buttons">
+                <a href="tel:+919370105528" class="btn">📞 +91 9370105528</a>
+                <a href="mailto:nileshsah56@gmail.com" class="btn btn-secondary">✉️ nileshsah56@gmail.com</a>
+            </div>
+            <p>📍 Swastika Residency, Vangani West, Maharashtra 421503</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="card">
+            <p>
+                I'm an enthusiastic IT System Administrator with solid experience in computer hardware, 
+                software installation, and Linux-based server management. I specialize in deploying and 
+                maintaining Ubuntu and Nextcloud servers to ensure secure and efficient operations. 
+                Skilled in system configuration, troubleshooting, and security systems like CCTV and 
+                biometric devices, I'm passionate about technology and take pride in building reliable 
+                IT environments that keep businesses running smoothly.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="card skill-category">
+                <h3>Server Administration</h3>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>Ubuntu Server</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="90"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>Nextcloud</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="85"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>System Monitoring</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="80"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card skill-category">
+                <h3>Technical Skills</h3>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>Hardware Troubleshooting</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="95"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>Software Installation</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="90"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>Network Configuration</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="75"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card skill-category">
+                <h3>Security Systems</h3>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>CCTV Integration</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="85"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>Biometric Systems</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="80"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>System Security</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="85"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Games Section -->
+    <section id="games" class="games-section">
+        <h2>Tech Games Zone</h2>
+        <div class="games-container">
+            <!-- Terminal Simulator -->
+            <div class="game-card">
+                <h3 class="game-title">🖥️ Terminal Simulator</h3>
+                <p class="game-description">Test your Linux command knowledge!</p>
+                <button class="play-btn" onclick="startTerminal()">Play Now</button>
+                <div class="terminal-game" id="terminalGame">
+                    <div class="terminal-header">root@nilesh-server:~#</div>
+                    <div class="terminal-content" id="terminalContent">
+                        Welcome to Terminal Simulator!<br>
+                        Try these commands: ls, pwd, whoami, date, help<br>
+                        Type 'exit' to quit<br><br>
+                    </div>
+                    <input type="text" class="terminal-input" id="terminalInput" placeholder="Enter command..." onkeypress="handleTerminalInput(event)">
+                </div>
+                <div class="score-display" id="terminalScore">Score: 0</div>
+            </div>
+
+            <!-- Memory Game -->
+            <div class="game-card">
+                <h3 class="game-title">🧠 Tech Memory</h3>
+                <p class="game-description">Match the tech icons!</p>
+                <button class="play-btn" onclick="startMemoryGame()">Play Now</button>
+                <div class="memory-game" id="memoryGame"></div>
+                <div class="score-display" id="memoryScore">Moves: 0</div>
+            </div>
+
+            <!-- Speed Click Test -->
+            <div class="game-card">
+                <h3 class="game-title">⚡ Server Response Test</h3>
+                <p class="game-description">Test your click speed!</p>
+                <button class="play-btn" onclick="startSpeedTest()">Play Now</button>
+                <div class="speed-test" id="speedTest">
+                    <div class="speed-display" id="speedDisplay">0</div>
+                    <p>Clicks in 10 seconds</p>
+                    <button class="speed-button" id="speedButton" onclick="countClick()">CLICK!</button>
+                </div>
+                <div class="score-display" id="speedScore">Best: 0 clicks</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2>Work Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="card">
+                    <div class="experience-header">
+                        <h3 class="company-name">Sunshines Tower</h3>
+                        <span class="date-badge">2025 - Present</span>
+                    </div>
+                    <h4 class="job-title">IT System Administrator</h4>
+                    <ul class="experience-list">
+                        <li>Installed and configured Ubuntu and Nextcloud servers for secure file sharing and collaboration</li>
+                        <li>Performed monitoring system maintenance, updates, and performance optimization</li>
+                        <li>Diagnosed and resolved hardware, software, and OS-related issues</li>
+                        <li>Integrated CCTV and biometric systems within IT infrastructure</li>
+                        <li>Ensured network and system uptime through proactive troubleshooting and regular audits</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="card">
+                    <div class="experience-header">
+                        <h3 class="company-name">Hindustan Telecom</h3>
+                        <span class="date-badge">2023 - 2024</span>
+                    </div>
+                    <h4 class="job-title">IT Support & Hardware Technician</h4>
+                    <ul class="experience-list">
+                        <li>Provided IT support for desktops, laptops, and peripheral devices</li>
+                        <li>Managed OS installations, software deployment, and data backup operations</li>
+                        <li>Handled system repairs, diagnostics, and preventive maintenance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2>Education</h2>
+        <div class="card">
+            <div class="experience-header">
+                <h3 class="company-name">Mumbai University</h3>
+                <span class="date-badge">2022 - 2024</span>
+            </div>
+            <p style="font-size: 1.125rem; color: var(--text-gray);">Bachelor of Science in Information Technology</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-grid">
+            <div class="card">
+                <h3 style="color: var(--accent); margin-bottom: 1.5rem;">Contact Information</h3>
+                <div class="contact-info">
+                    <a href="tel:+919370105528">
+                        <span style="margin-right: 0.75rem;">📞</span> +91 9370105528
+                    </a>
+                    <a href="mailto:nileshsah56@gmail.com">
+                        <span style="margin-right: 0.75rem;">✉️</span> nileshsah56@gmail.com
+                    </a>
+                    <div style="display: flex; align-items: start;">
+                        <span style="margin-right: 0.75rem;">📍</span>
+                        <span>Swastika Residency, Vangani West,<br>Maharashtra 421503</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 style="color: var(--accent); margin-bottom: 1.5rem;">References</h3>
+                <div class="reference">
+                    <p class="name">Dayanand Patil</p>
+                    <p class="company">Solutions Technology</p>
+                    <p>📞 8421501603</p>
+                    <p>✉️ solutiontechnology2013@gmail.com</p>
+                </div>
+                <div class="reference">
+                    <p class="name">Vasudeo Kudlagi</p>
+                    <p class="company">Sunshine Tower</p>
+                    <p>📞 9892496644</p>
+                    <p>✉️ fm@sunshinetower.in</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Nilesh Shah. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Typing Effect
+        const text = 'IT System Administrator';
+        const typedTextElement = document.getElementById('typedText');
+        let index = 0;
+
+        function typeText() {
+            if (index <= text.length) {
+                typedTextElement.textContent = text.slice(0, index);
+                index++;
+                setTimeout(typeText, 100);
+            }
+        }
+
+        window.addEventListener('load', () => {
+            typeText();
+            animateSkillBars();
+        });
+
+        // Navigation
+        const navLinks = document.querySelectorAll('.nav-links a');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+                
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // Mobile Menu
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinksContainer = document.getElementById('navLinks');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinksContainer.classList.toggle('active');
+        });
+
+        // Animate Skill Bars
+        function animateSkillBars() {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const width = entry.target.getAttribute('data-width');
+                        entry.target.style.width = width + '%';
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            skillBars.forEach(bar => {
+                bar.style.width = '0%';
+                observer.observe(bar);
+            });
+        }
+
+        // Update Active Navigation on Scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Terminal Game
+        let terminalScore = 0;
+        const commands = {
+            'ls': 'Desktop  Documents  Downloads  Pictures  Videos',
+            'pwd': '/home/nilesh',
+            'whoami': 'nilesh',
+            'date': new Date().toString(),
+            'help': 'Available commands: ls, pwd, whoami, date, clear, exit',
+            'clear': 'CLEAR'
+        };
+
+        function startTerminal() {
+            const game = document.getElementById('terminalGame');
+            const scoreDisplay = document.getElementById('terminalScore');
+            game.classList.toggle('active');
+            scoreDisplay.classList.toggle('show');
+            if (game.classList.contains('active')) {
+                document.getElementById('terminalInput').focus();
+            }
+        }
+
+        function handleTerminalInput(event) {
+            if (event.key === 'Enter') {
+                const input = document.getElementById('terminalInput');
+                const content = document.getElementById('terminalContent');
+                const command = input.value.toLowerCase().trim();
+                
+                if (command === 'exit') {
+                    document.getElementById('terminalGame').classList.remove('active');
+                    return;
+                }
+                
+                if (command === 'clear') {
+                    content.innerHTML = '';
+                } else if (commands[command]) {
+                    content.innerHTML += `$ ${command}<br>${commands[command]}<br><br>`;
+                    terminalScore += 10;
+                    document.getElementById('terminalScore').textContent = `Score: ${terminalScore}`;
+                } else {
+                    content.innerHTML += `$ ${command}<br>Command not found. Type 'help' for available commands.<br><br>`;
+                }
+                
+                input.value = '';
+                content.scrollTop = content.scrollHeight;
+            }
+        }
+
+        // Memory Game
+        let memoryCards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let moves = 0;
+        const icons = ['🖥️', '💾', '🖱️', '⌨️', '🖨️', '📱', '🔌', '📡'];
+
+        function startMemoryGame() {
+            const game = document.getElementById('memoryGame');
+            const scoreDisplay = document.getElementById('memoryScore');
+            game.classList.toggle('active');
+            scoreDisplay.classList.toggle('show');
+            
+            if (game.classList.contains('active')) {
+                initMemoryGame();
+            }
+        }
+
+        function initMemoryGame() {
+            const game = document.getElementById('memoryGame');
+            game.innerHTML = '';
+            memoryCards = [];
+            flippedCards = [];
+            matchedPairs = 0;
+            moves = 0;
+            
+            // Create pairs
+            const gameIcons = [...icons, ...icons];
+            gameIcons.sort(() => Math.random() - 0.5);
+            
+            gameIcons.forEach((icon, index) => {
+                const card = document.createElement('div');
+                card.className = 'memory-card';
+                card.dataset.icon = icon;
+                card.dataset.index = index;
+                card.textContent = '?';
+                card.addEventListener('click', flipCard);
+                game.appendChild(card);
+                memoryCards.push(card);
+            });
+        }
+
+        function flipCard() {
+            if (flippedCards.length >= 2) return;
+            if (this.classList.contains('flipped')) return;
+            
+            this.classList.add('flipped');
+            this.textContent = this.dataset.icon;
+            flippedCards.push(this);
+            
+            if (flippedCards.length === 2) {
+                moves++;
+                document.getElementById('memoryScore').textContent = `Moves: ${moves}`;
+                checkMatch();
+            }
+        }
+
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            
+            if (card1.dataset.icon === card2.dataset.icon) {
+                card1.classList.add('matched');
+                card2.classList.add('matched');
+                matchedPairs++;
+                flippedCards = [];
+                
+                if (matchedPairs === icons.length) {
+                    setTimeout(() => {
+                        alert(`Congratulations! You won in ${moves} moves!`);
+                        initMemoryGame();
+                    }, 500);
+                }
+            } else {
+                setTimeout(() => {
+                    card1.classList.remove('flipped');
+                    card2.classList.remove('flipped');
+                    card1.textContent = '?';
+                    card2.textContent = '?';
+                    flippedCards = [];
+                }, 1000);
+            }
+        }
+
+        // Speed Test Game
+        let clickCount = 0;
+        let speedTestActive = false;
+        let speedTimer;
+        let bestScore = 0;
+
+        function startSpeedTest() {
+            const game = document.getElementById('speedTest');
+            const scoreDisplay = document.getElementById('speedScore');
+            game.classList.toggle('active');
+            scoreDisplay.classList.toggle('show');
+            
+            if (game.classList.contains('active')) {
+                resetSpeedTest();
+            }
+        }
+
+        function resetSpeedTest() {
+            clickCount = 0;
+            speedTestActive = true;
+            document.getElementById('speedDisplay').textContent = '0';
+            document.getElementById('speedButton').textContent = 'START!';
+        }
+
+        function countClick() {
+            if (!speedTestActive) return;
+            
+            if (clickCount === 0) {
+                document.getElementById('speedButton').textContent = 'CLICK!';
+                speedTimer = setTimeout(() => {
+                    speedTestActive = false;
+                    document.getElementById('speedButton').textContent = 'TIME UP!';
+                    if (clickCount > bestScore) {
+                        bestScore = clickCount;
+                        document.getElementById('speedScore').textContent = `Best: ${bestScore} clicks`;
+                    }
+                    setTimeout(resetSpeedTest, 2000);
+                }, 10000);
+            }
+            
+            clickCount++;
+            document.getElementById('speedDisplay').textContent = clickCount;
+        }
+    </script>
+</body>
+</html>
